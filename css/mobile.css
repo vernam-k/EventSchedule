@@ -1,0 +1,186 @@
+@media screen and (max-width: 768px) {
+    header {
+        padding: 1.5rem 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    /* Mobile Day Navigation */
+    #dayNav {
+        padding: 0;
+    }
+
+    .mobile-day-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        background: var(--nav-bg);
+    }
+
+    .days-container {
+        display: none;
+        padding: 0.5rem;
+        background: var(--nav-bg);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .days-container.expanded {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .toggle-days.expanded .chevron-icon {
+        transform: rotate(180deg);
+    }
+
+    .day-tab {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        margin: 0.25rem 0;
+        text-align: left;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .add-activity {
+        margin: 1rem 0;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 1rem auto;
+        border-radius: 12px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+
+    .activity-card {
+        padding: 1.25rem;
+        border-radius: 10px;
+    }
+
+    .activity-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .activity-title {
+        font-size: 1.25rem;
+        margin-right: 0;
+    }
+
+    .activity-time {
+        font-size: 0.95rem;
+    }
+
+    .activity-organizer {
+        font-size: 0.95rem;
+    }
+
+    .activity-description {
+        font-size: 1rem;
+    }
+
+    input[type="text"],
+    input[type="time"],
+    input[type="password"],
+    textarea,
+    select {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    label {
+        font-size: 0.95rem;
+    }
+
+    #notes-section {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+
+    #notes-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .note-item {
+        padding: 1.25rem;
+    }
+
+    .note-text {
+        font-size: 1rem;
+    }
+}
+
+/* Additional mobile optimizations for smaller screens */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .mobile-day-header {
+        padding: 0.625rem 0.875rem;
+    }
+
+    #currentDayDisplay {
+        font-size: 0.95rem;
+    }
+
+    .day-tab {
+        font-size: 0.9rem;
+        padding: 0.625rem 0.875rem;
+    }
+
+    .activity-card {
+        padding: 1rem;
+    }
+
+    .activity-title {
+        font-size: 1.125rem;
+    }
+
+    .activity-time,
+    .activity-organizer,
+    .activity-description {
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        padding: 1.25rem;
+    }
+
+    .modal-content h2 {
+        font-size: 1.25rem;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .delete-button {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+    }
+}
