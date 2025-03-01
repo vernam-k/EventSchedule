@@ -26,7 +26,6 @@ A beautiful, mobile-friendly event scheduling website for managing activities an
 - **Security**
   - Simple secret phrase protection
   - No login required
-  - Shared access with "community" phrase
 
 - **Mobile-First Design**
   - Responsive layout
