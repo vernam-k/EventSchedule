@@ -151,7 +151,9 @@ class ActivitiesManager {
 
     async loadActivities() {
         try {
-            const response = await fetch('data/activities.json');
+            // Use the PHP endpoint instead of directly accessing the JSON file
+            // The PHP endpoint already has cache control headers
+            const response = await fetch('get_activities.php');
             const data = await response.json();
             this.activities = data.activities;
             this.renderActivities();
@@ -203,7 +205,9 @@ class ActivitiesManager {
 
         await this.saveActivities();
         this.hideModal();
-        this.renderActivities();
+        
+        // Immediately load the latest activities to ensure UI is up-to-date
+        await this.loadActivities();
     }
 
     async deleteActivity() {
@@ -211,7 +215,9 @@ class ActivitiesManager {
         this.activities = this.activities.filter(a => a.id !== activityId);
         await this.saveActivities();
         this.hideModal();
-        this.renderActivities();
+        
+        // Immediately load the latest activities to ensure UI is up-to-date
+        await this.loadActivities();
     }
 
     editActivity(activityId) {

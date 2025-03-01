@@ -98,7 +98,9 @@ class NotesManager {
 
     async loadNotes() {
         try {
-            const response = await fetch('data/notes.json');
+            // Use the PHP endpoint instead of directly accessing the JSON file
+            // The PHP endpoint already has cache control headers
+            const response = await fetch('get_notes.php');
             const data = await response.json();
             this.notes = data.notes;
             this.renderNotes();
@@ -144,7 +146,9 @@ class NotesManager {
 
         await this.saveNotes();
         this.hideModal();
-        this.renderNotes();
+        
+        // Immediately load the latest notes to ensure UI is up-to-date
+        await this.loadNotes();
     }
 
     async deleteNote() {
@@ -152,7 +156,9 @@ class NotesManager {
         this.notes = this.notes.filter(n => n.id !== noteId);
         await this.saveNotes();
         this.hideModal();
-        this.renderNotes();
+        
+        // Immediately load the latest notes to ensure UI is up-to-date
+        await this.loadNotes();
     }
 
     editNote(noteId) {
