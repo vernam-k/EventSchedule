@@ -325,6 +325,11 @@ class EnhancedFeatures {
                         const dayTab = document.querySelector(`.day-tab[data-date="${result.day}"]`);
                         if (dayTab) {
                             dayTab.click();
+                            
+                            // Ensure activitiesManager's currentDay is updated
+                            if (window.activitiesManager) {
+                                window.activitiesManager.currentDay = result.day;
+                            }
                         }
                         
                         // Open the activity modal
@@ -433,14 +438,21 @@ class EnhancedFeatures {
                 }
             }
             
-            // Number keys 1-7 to switch days
+            // Disable number key shortcuts completely to avoid interference with time inputs
+            // This removes the 1-7 keyboard shortcuts for switching days
+            
+            /* Original code removed to prevent interference with time inputs:
             if (!e.ctrlKey && !e.altKey && !e.metaKey && /^[1-7]$/.test(e.key)) {
                 const dayTabs = document.querySelectorAll('.day-tab');
                 const index = parseInt(e.key) - 1;
                 if (dayTabs[index]) {
                     dayTabs[index].click();
+                    if (window.activitiesManager) {
+                        window.activitiesManager.currentDay = dayTabs[index].dataset.date;
+                    }
                 }
             }
+            */
         });
     }
 
@@ -465,7 +477,14 @@ class EnhancedFeatures {
             const dayTab = document.querySelector(`.day-tab[data-date="${lastDay}"]`);
             if (dayTab) {
                 setTimeout(() => {
+                    // Ensure we're using the click method to properly trigger the event
+                    // This will call switchDay in the ActivitiesManager
                     dayTab.click();
+                    
+                    // Double-check that the activitiesManager's currentDay is updated
+                    if (window.activitiesManager) {
+                        window.activitiesManager.currentDay = lastDay;
+                    }
                 }, 100);
             }
         }

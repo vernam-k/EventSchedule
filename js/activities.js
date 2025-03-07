@@ -134,10 +134,14 @@ class ActivitiesManager {
             document.getElementById('startTime').value = activity.startTime;
             document.getElementById('duration').value = activity.duration;
             document.getElementById('color').value = activity.color;
+            // Store the activity's day in a data attribute for editing
+            document.getElementById('activityForm').dataset.originalDay = activity.day;
             this.deleteButton.style.display = 'block';
         } else {
             document.getElementById('activityId').value = '';
             document.getElementById('color').value = Utils.getRandomColor();
+            // For new activities, use the current day
+            document.getElementById('activityForm').dataset.originalDay = this.currentDay;
             this.deleteButton.style.display = 'none';
         }
 
@@ -183,6 +187,10 @@ class ActivitiesManager {
 
     async saveActivity() {
         const activityId = document.getElementById('activityId').value;
+        
+        // Get the original day from the form's data attribute
+        const originalDay = document.getElementById('activityForm').dataset.originalDay;
+        
         const activity = {
             id: activityId || Utils.generateId(),
             organizer: document.getElementById('organizer').value,
@@ -191,7 +199,8 @@ class ActivitiesManager {
             startTime: document.getElementById('startTime').value,
             duration: document.getElementById('duration').value,
             color: document.getElementById('color').value,
-            day: this.currentDay
+            // Use the original day when editing, or current day for new activities
+            day: originalDay || this.currentDay
         };
 
         if (activityId) {
@@ -231,9 +240,8 @@ class ActivitiesManager {
         const container = document.getElementById('activitiesList');
         container.innerHTML = '';
 
-        const dayActivities = Utils.sortActivities(
-            this.activities.filter(a => a.day === this.currentDay)
-        );
+        const filteredActivities = this.activities.filter(a => a.day === this.currentDay);
+        const dayActivities = Utils.sortActivities(filteredActivities);
 
         dayActivities.forEach(activity => {
             const endTime = Utils.calculateEndTime(activity.startTime, activity.duration);

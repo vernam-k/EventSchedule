@@ -206,10 +206,7 @@
                         <div class="shortcut-keys"><kbd>Esc</kbd></div>
                         <div class="shortcut-description">Close modal</div>
                     </div>
-                    <div class="shortcut-item">
-                        <div class="shortcut-keys"><kbd>1</kbd> - <kbd>7</kbd></div>
-                        <div class="shortcut-description">Switch between days</div>
-                    </div>
+                    <!-- Number key shortcuts removed to prevent interference with time inputs -->
                 </div>
                 <div class="button-group">
                     <button type="button" class="secondary-button" id="closeShortcutsButton">
